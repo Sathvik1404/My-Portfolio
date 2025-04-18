@@ -203,6 +203,28 @@
                 margin-bottom: 0;
             }
         }
+
+        main {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            margin: 2%;
+        }
+
+        .second {
+            margin-top: 5%;
+        }
+
+        .first {
+            font-size: 15px;
+            padding-left: 20px;
+            padding-right: 15%;
+        }
+
+        .docu {
+            cursor: pointer;
+            color: rgb(125, 125, 231);
+        }
     </style>
 </head>
 
@@ -266,16 +288,25 @@
         </nav>
     </header>
     <main>
-        <section id="home" class="intro">
-            <div class="leftsection">
-                <p>Hello All &#128075;!<span class="name"></span></p>
-                <p>Welcome to <span class="clg">My Portfolio</span></p>
-                <p>I am <span class="clg">Sathvik goli</span></p>
-            </div>
-            <div class="rightsection">
-                <img src="dev1.png" alt="Developer image" height="50%" width="50%">
-            </div>
-        </section>
+        <div class="first">
+            <p>Hello All &#128075;!<span class="name"></span></p>
+            <p>I am <span class="clg">Sathvik goli</span></p>
+            <p>Currently i am pursuing my B.tech 3rd Year in CVR College Of Engineering.
+                I am very much intrested in acquiring new skills and gain knowledge.I like problem solving and having
+                3stars in java in Hacker Rank platform <br><br><br>
+                And here are my course completions and certificates <br><br>
+
+                Introduction to Front End Development by SimpliLearn<span class="docu">(<a
+                        href="frontend.png">view</a>)</span><br>
+                JavaScript for beginners by SimpliLearn <span class="docu">(<a
+                        href="javascript.png">view</a>)</span><br>
+                Database Design by Oracle Academy <span class="docu">(<a href="dd.png">view</a>)</span><br>
+                Database Programming by Oracle Academy <span class="docu">(<a href="dp.png">view</a>)</span><br>
+                Intern as JAVA Devloper at InternPe <span class="docu">(<a href="InternPe.jpeg">view</a>)</span>
+
+            </p>
+        </div>
+        <div class="second"><img src="about.png" alt="about" height="300px" width="450px"></div>
     </main>
 </body>
 
