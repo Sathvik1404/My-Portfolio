@@ -1,282 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sathvik's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000021;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sathvik Goli — Full Stack Developer</title>
+  <meta name="description" content="Sathvik Goli — Full Stack Developer (MERN), SDE Intern at nDMatrix, B.Tech CSE at CVR College of Engineering.">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090f;
+      --surface: #12121c;
+      --border: #1e1e2e;
+      --accent: #7c6af7;
+      --accent2: #a78bfa;
+      --glow: rgba(124,106,247,0.15);
+      --text: #e8e8f0;
+      --muted: #7a7a9a;
+      --tag-bg: #1a1a2e;
+      --success: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
 
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            height: 75px;
-            background-color: #06063F;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%; height: 64px;
+      background: rgba(9,9,15,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--accent2); }
+    .nav-logo span { color: var(--muted); }
+    .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+    .nav-links li a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links li a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; padding: 0.4rem 1.1rem; border-radius: 6px; font-size: 0.85rem !important; transition: opacity 0.2s !important; }
+    .nav-cta:hover { opacity: 0.85; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
 
-        nav .left {
-            font-size: 1.875rem;
-        }
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      padding: 0 10%; position: relative; overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(124,106,247,0.11) 0%, transparent 70%); }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--accent);
+      letter-spacing: 0.1em; margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--accent); }
+    h1.hero-name { font-size: clamp(2.8rem, 6vw, 4.8rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 520px; margin-bottom: 2.2rem; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.72rem 1.8rem; border-radius: 8px; font-size: 0.93rem; font-weight: 600; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 18px var(--glow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 28px var(--glow); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); padding: 0.72rem 1.8rem; border-radius: 8px; font-size: 0.93rem; font-weight: 600; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .btn-outline:hover { border-color: var(--accent); background: var(--glow); }
+    .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tag { background: var(--tag-bg); border: 1px solid var(--border); color: var(--muted); font-size: 0.76rem; font-weight: 500; padding: 0.28rem 0.72rem; border-radius: 20px; font-family: 'JetBrains Mono', monospace; }
+    .tag.active { border-color: var(--accent); color: var(--accent2); background: rgba(124,106,247,0.1); }
+    .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--success); margin-right: 0.4rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+    /* ── SECTION BASE ── */
+    section { padding: 5.5rem 10%; }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .section-title { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2.8rem; }
+    .section-title span { color: var(--accent2); }
+    .divider { height: 1px; background: var(--border); margin: 0 10%; }
 
-        nav ul li {
-            position: relative;
-            margin: 0 15px;
-        }
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--surface); }
+    .timeline { display: flex; flex-direction: column; gap: 1.8rem; }
+    .timeline-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; position: relative; }
+    .timeline-item::after { content: ''; position: absolute; left: 159px; top: 16px; bottom: -1.8rem; width: 1px; background: var(--border); }
+    .timeline-item:last-child::after { display: none; }
+    .tl-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted); padding-top: 6px; text-align: right; line-height: 1.5; }
+    .tl-body { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.3rem 1.5rem; position: relative; transition: border-color 0.2s; }
+    .tl-body:hover { border-color: rgba(124,106,247,0.4); }
+    .tl-body::before { content: ''; position: absolute; left: -8px; top: 12px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--surface); }
+    .tl-role { font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; }
+    .tl-company { color: var(--accent2); font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .tl-points { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .tl-points li { color: var(--muted); font-size: 0.86rem; line-height: 1.6; padding-left: 1.1rem; position: relative; }
+    .tl-points li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; top: 2px; }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: font-size 0.3s;
-        }
+    /* ── PROJECTS ── */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; transition: border-color 0.25s, transform 0.25s; display: flex; flex-direction: column; gap: 0.9rem; }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .project-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(124,106,247,0.12); border: 1px solid rgba(124,106,247,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-links a { color: var(--muted); font-size: 0.78rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 5px; transition: color 0.2s, border-color 0.2s; }
+    .project-links a:hover { color: var(--accent2); border-color: var(--accent); }
+    .project-name { font-weight: 700; font-size: 1.05rem; }
+    .project-category { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); margin-bottom: 0.1rem; }
+    .project-desc { color: var(--muted); font-size: 0.86rem; line-height: 1.65; flex: 1; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+    .stack-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; background: var(--tag-bg); border: 1px solid var(--border); color: var(--muted); padding: 0.18rem 0.52rem; border-radius: 4px; }
 
-        nav ul li a:hover {
-            font-size: 1.05rem;
-        }
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.3rem; }
+    .skill-group { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.3rem; }
+    .skill-group-title { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.9rem; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .skill-pill { background: var(--tag-bg); border: 1px solid var(--border); color: var(--text); font-size: 0.8rem; font-weight: 500; padding: 0.32rem 0.75rem; border-radius: 6px; transition: border-color 0.2s, background 0.2s; }
+    .skill-pill:hover { border-color: var(--accent); background: rgba(124,106,247,0.07); }
 
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #06063F;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            z-index: 1;
-        }
+    /* ── CERTIFICATIONS ── */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.3rem; display: flex; gap: 0.9rem; align-items: flex-start; transition: border-color 0.2s; }
+    .cert-card:hover { border-color: rgba(124,106,247,0.4); }
+    .cert-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+    .cert-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.2rem; }
+    .cert-issuer { color: var(--muted); font-size: 0.78rem; }
 
-        nav ul li:hover ul {
-            display: block;
-        }
+    /* ── INVOLVEMENT ── */
+    .involvement-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .inv-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.4rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color 0.2s; }
+    .inv-item:hover { border-color: rgba(124,106,247,0.4); }
+    .inv-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: rgba(124,106,247,0.1); border: 1px solid rgba(124,106,247,0.3); color: var(--accent2); padding: 0.22rem 0.55rem; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+    .inv-text { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+    .inv-text strong { color: var(--text); }
 
-        nav ul li ul li {
-            width: 200px;
-        }
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-left {}
+    .contact-desc { color: var(--muted); font-size: 0.93rem; line-height: 1.75; margin-bottom: 1.8rem; }
+    .contact-quick-links { display: flex; flex-direction: column; gap: 0.7rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.6rem; color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+    .contact-link:hover { color: var(--accent2); }
+    .contact-link svg { flex-shrink: 0; opacity: 0.6; }
+    /* Contact Form */
+    .contact-form { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
+    .contact-form h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1.4rem; color: var(--text); }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.78rem; color: var(--muted); font-weight: 500; font-family: 'JetBrains Mono', monospace; }
+    .form-group input, .form-group textarea {
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      border-radius: 7px; padding: 0.65rem 0.9rem; font-size: 0.88rem;
+      font-family: 'Space Grotesk', sans-serif; transition: border-color 0.2s; width: 100%; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 7px; padding: 0.75rem; font-size: 0.92rem; font-weight: 600; cursor: pointer; font-family: 'Space Grotesk', sans-serif; transition: opacity 0.2s, transform 0.2s; }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .form-success { display: none; text-align: center; padding: 1.5rem; color: var(--success); font-size: 0.92rem; font-weight: 500; }
+    .form-success svg { display: block; margin: 0 auto 0.7rem; }
 
-        nav ul li ul li a {
-            display: block;
-            padding: 10px;
-        }
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
 
-        header {
-            padding: 10px 7%;
-            text-align: center;
-            background-color: #06063F;
-        }
+    /* ── FADE ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: chocolate;
-        }
-
-        .intro {
-            margin: 8%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            text-align: center;
-        }
-
-
-        .intro .leftsection,
-        .intro .rightsection {
-            margin-left: 10%;
-            margin-bottom: 20px;
-        }
-
-        .intro .leftsection .name,
-        .intro .leftsection .clg {
-            color: chocolate;
-        }
-
-        .skills,
-        .projects,
-        .contact {
-            padding: 50px 10%;
-            text-align: center;
-        }
-
-        .skills h2,
-        .projects h2,
-        .contact h2 {
-            color: chocolate;
-            margin-bottom: 20px;
-        }
-
-        .disk {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-        }
-
-        .disk div {
-            width: 45%;
-            min-width: 250px;
-        }
-
-        .disk p {
-            margin: 10px 0;
-        }
-
-        .ski,
-        .prg {
-            color: chocolate;
-            font-size: 1.25rem;
-        }
-
-        .ski u,
-        .prg u {
-            text-decoration: underline;
-        }
-
-        .projects .project {
-            margin-bottom: 20px;
-        }
-
-        .projects .project h3 {
-            color: chocolate;
-        }
-
-        .contact form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact form input,
-        .contact form textarea {
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .contact form input[type="submit"] {
-            background-color: chocolate;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .contact form input[type="submit"]:hover {
-            background-color: #d2691e;
-        }
-
-        #home {
-            font-size: 30px;
-        }
-
-        .leftsection {
-            width: 650px;
-        }
-
-        @media (min-width: 768px) {
-            .intro {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-
-            .intro .leftsection,
-            .intro .rightsection {
-                margin-bottom: 0;
-            }
-        }
-    </style>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .timeline-item::after { display: none; }
+      .tl-date { text-align: left; }
+      .tl-body::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1.5rem 6%; gap: 1.2rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      #home { padding: 0 6%; }
+      section { padding: 4rem 6%; }
+      .divider { margin: 0 6%; }
+    }
+  </style>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <div class="left">Portfolio</div>
-            <div class="right">
-                <ul>
-                    <li style="font-size: 17px;"><a href="index.html"><svg stroke="currentColor" fill="currentColor"
-                                stroke-width="0" viewBox="0 0 1025 1040" height="1em" width="1em"
-                                xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
-                                <path
-                                    d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 0 0-44.4 0L77.5 505a63.9 63.9 0 0 0-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0 0 18.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z">
-                                </path>
-                            </svg> Home</a></li>
-                    <li style="font-size: 17px;"><a href="about.html"><svg stroke="currentColor" fill="currentColor"
-                                stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em"
-                                xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
-                                <path
-                                    d="M858.5 763.6a374 374 0 0 0-80.6-119.5 375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z">
-                                </path>
-                            </svg> About</a></li>
-                    <li style="font-size: 17px;"><a href="skills.html"><svg stroke="currentColor" fill="currentColor"
-                                stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em"
-                                xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
-                                <path
-                                    d="M990.848 696.304V438.16l16.096-8.496c10.464-5.44 17.055-16.225 17.183-28.032.128-11.777-6.256-22.689-16.592-28.368l-481.44-257.6c-9.631-5.28-21.28-5.249-30.976.095l-478.8 257.92C6.126 379.36-.177 390.143-.113 401.84s6.496 22.4 16.817 27.97l210.384 111.983c-2.64 4.656-4.272 9.968-4.272 15.696v270.784c0 9.12 3.905 17.84 10.72 23.904 6.945 6.16 73.441 60.096 276.753 60.096 202.592 0 270.88-50.976 278-56.784 7.44-6.064 11.744-15.152 11.744-24.784V552.976c0-4.496-.944-8.768-2.608-12.64l129.424-68.369V696.48c-18.976 11.104-31.84 31.472-31.84 55.024 0 35.344 28.656 64 64 64s64-28.656 64-64c0-23.697-13.04-44.145-32.16-55.2zM736.031 812.368c-25.152 12.096-91.712 35.904-225.744 35.904-134.88 0-199.936-25.344-223.472-37.536V573.6l207.808 110.624a31.896 31.896 0 0 0 15.184 3.84 31.675 31.675 0 0 0 14.816-3.664l211.408-111.664v239.632zM510.063 619.81l-411.6-218.561 412.32-220.976 413.6 220.336z">
-                                </path>
-                            </svg> Skills</a></li>
-                    <li style="font-size: 17px;"><a href="SATHVIK_GOLI_RESUME.pdf"><svg stroke="currentColor" fill="none"
-                                stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em"
-                                xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
-                                <path d="M7 18H17V16H7V18Z" fill="currentColor"></path>
-                                <path d="M17 14H7V12H17V14Z" fill="currentColor"></path>
-                                <path d="M7 10H11V8H7V10Z" fill="currentColor"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M6 2C4.34315 2 3 3.34315 3 5V19C3 20.6569 4.34315 22 6 22H18C19.6569 22 21 20.6569 21 19V9C21 5.13401 17.866 2 14 2H6ZM6 4H13V9H19V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V5C5 4.44772 5.44772 4 6 4ZM15 4.10002C16.6113 4.4271 17.9413 5.52906 18.584 7H15V4.10002Z"
-                                    fill="currentColor"></path>
-                            </svg> Resume</a></li>
-                    <li style="font-size: 17px;"><a href="project.html"><svg stroke="currentColor" fill="currentColor"
-                                stroke-width="0" t="1569683753031" viewBox="0 0 1024 1024" version="1.1" height="1em"
-                                width="1em" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
-                                <defs></defs>
-                                <path
-                                    d="M312.1 591.5c3.1 3.1 8.2 3.1 11.3 0l101.8-101.8 86.1 86.2c3.1 3.1 8.2 3.1 11.3 0l226.3-226.5c3.1-3.1 3.1-8.2 0-11.3l-36.8-36.8c-3.1-3.1-8.2-3.1-11.3 0L517 485.3l-86.1-86.2c-3.1-3.1-8.2-3.1-11.3 0L275.3 543.4c-3.1 3.1-3.1 8.2 0 11.3l36.8 36.8z">
-                                </path>
-                                <path
-                                    d="M904 160H548V96c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H120c-17.7 0-32 14.3-32 32v520c0 17.7 14.3 32 32 32h356.4v32L311.6 884.1c-3.7 2.4-4.7 7.3-2.3 11l30.3 47.2v0.1c2.4 3.7 7.4 4.7 11.1 2.3L512 838.9l161.3 105.8c3.7 2.4 8.7 1.4 11.1-2.3v-0.1l30.3-47.2c2.4-3.7 1.3-8.6-2.3-11L548 776.3V744h356c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32z m-40 512H160V232h704v440z">
-                                </path>
-                            </svg> Projects</a></li>
-                    <li style="font-size: 17px;"><a href="contact.html"><svg stroke="currentColor" fill="currentColor"
-                                stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em"
-                                xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 0px;">
-                                <path
-                                    d="M256 48C141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208S370.4 48 256 48zm0 62.4c34.3 0 62.4 28.1 62.4 62.4s-28.1 62.4-62.4 62.4-62.4-28.1-62.4-62.4 28.1-62.4 62.4-62.4zm0 300.4c-52 0-97.8-27-124.8-66.6 1-41.6 83.2-64.5 124.8-64.5s123.8 22.9 124.8 64.5c-27 39.5-72.8 66.6-124.8 66.6z">
-                                </path>
-                            </svg> Contact Me</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <section id="home" class="intro">
-            <div class="leftsection">
-                <p>Hello All &#128075;!<span class="name"></span></p>
-                <p>Welcome to <span class="clg">My Portfolio</span></p>
-                <p>I am <span class="clg">Sathvik goli</span></p>
-            </div>
-            <div class="rightsection">
-                <img src="dev1.png" alt="Developer image" height="50%" width="50%">
-            </div>
-        </section>
-    </main>
-</body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SG<span>.dev</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" onclick="closeNav()">Home</a></li>
+    <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+    <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+    <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+    <li><a class="nav-cta" href="SATHVIK_GOLI_RESUME.pdf" target="_blank" rel="noopener">Resume ↗</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="status-dot"></span>Open to opportunities
+    </div>
+    <h1 class="hero-name">Sathvik<br><span class="highlight">Goli.</span></h1>
+    <p class="hero-sub">
+      Full Stack Developer & B.Tech CSE student at CVR College of Engineering (2026). Currently interning as SDE at nDMatrix, building cloud-native MERN applications deployed on GCP.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="SATHVIK_GOLI_RESUME.pdf" target="_blank" rel="noopener" class="btn-outline">View Resume ↗</a>
+    </div>
+    <div class="hero-tags">
+      <span class="tag active">MERN Stack</span>
+      <span class="tag">React.js</span>
+      <span class="tag">Node.js</span>
+      <span class="tag">MongoDB</span>
+      <span class="tag">MySQL</span>
+      <span class="tag">GCP</span>
+      <span class="tag">JWT</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label fade-up">Career</div>
+  <div class="section-title fade-up">Experience <span>&</span> Education</div>
+  <div class="timeline">
+
+    <div class="timeline-item fade-up">
+      <div class="tl-date">Dec 2025 –<br>Present</div>
+      <div class="tl-body">
+        <div class="tl-role">SDE Intern</div>
+        <div class="tl-company">nDMatrix Private Limited · Hyderabad, Telangana</div>
+        <ul class="tl-points">
+          <li>Engineered a full-stack, cloud-deployed learning platform supporting 4 distinct user roles with isolated dashboards and permissions.</li>
+          <li>Designed scalable Node.js/Express APIs handling course purchases, test evaluations, analytics, and live session workflows.</li>
+          <li>Structured normalized MySQL database schemas improving query performance and data consistency.</li>
+          <li>Built a performance tracking and analytics module for student score visualization.</li>
+          <li>Deployed and monitored application services on Google Cloud Platform (GCP).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="tl-date">Jun 2025 –<br>Dec 2025</div>
+      <div class="tl-body">
+        <div class="tl-role">Apprentice Engineer</div>
+        <div class="tl-company">DBS Tech India · Hyderabad</div>
+        <ul class="tl-points">
+          <li>Completed structured apprenticeship under DBS Tech India's technology program.</li>
+          <li>Assisted in software development, debugging, and application support activities.</li>
+          <li>Collaborated with engineering teams using Git and Agile practices.</li>
+          <li>Gained hands-on exposure to enterprise-level development workflows and industry best practices.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="tl-date">Jul – Sep 2024</div>
+      <div class="tl-body">
+        <div class="tl-role">Google Cloud Generative AI Virtual Intern</div>
+        <div class="tl-company">EduSkills</div>
+        <ul class="tl-points">
+          <li>Completed Google Cloud's Generative AI virtual internship via the EduSkills program.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="tl-date">2022 – 2026</div>
+      <div class="tl-body">
+        <div class="tl-role">B.Tech — Computer Science & Engineering</div>
+        <div class="tl-company">CVR College of Engineering, Hyderabad · GPA: 9.22</div>
+        <ul class="tl-points">
+          <li>Consistently maintained a 9+ GPA throughout the program.</li>
+          <li>Elected as Marketing Lead at the Cybernauts Club.</li>
+          <li>Attended MERN Stack Workshop and participated in a 24-hour Hackathon at VNR College of Engineering.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label fade-up">Built</div>
+  <div class="section-title fade-up">Featured <span>Projects</span></div>
+  <div class="project-grid">
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-icon">🏥</div>
+        <div class="project-links">
+          <a href="https://github.com/Sathvik1404/mediConnect" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="project-category">MERN · Healthcare</div>
+        <div class="project-name">MediConnect</div>
+      </div>
+      <div class="project-desc">Hospital management platform with multi-role access for patients, doctors, and hospitals. JWT + middleware RBAC, Cloudinary for medical reports, Razorpay for payments. Deployed on Render.</div>
+      <div class="project-stack">
+        <span class="stack-tag">React.js</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express</span>
+        <span class="stack-tag">MongoDB</span><span class="stack-tag">JWT</span><span class="stack-tag">Razorpay</span><span class="stack-tag">Cloudinary</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-icon">📚</div>
+        <div class="project-links">
+          <a href="https://github.com/Sathvik1404/Tutone" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="project-category">MERN · EdTech</div>
+        <div class="project-name">Tutone</div>
+      </div>
+      <div class="project-desc">Course platform with secure JWT auth, role-based dashboards, and real-time enrollment tracking. Razorpay with automatic post-payment enrollment. RESTful APIs with protected routes and loading states.</div>
+      <div class="project-stack">
+        <span class="stack-tag">React.js</span><span class="stack-tag">Node.js</span>
+        <span class="stack-tag">MongoDB</span><span class="stack-tag">JWT</span><span class="stack-tag">Razorpay</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-icon">🏦</div>
+        <div class="project-links">
+          <a href="https://github.com/Sathvik1404/Bankproject" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="project-category">MERN · Finance</div>
+        <div class="project-name">Bank Management System</div>
+      </div>
+      <div class="project-desc">Full-stack banking web app for secure transactions and account management. React.js UI with smooth interactions, Node.js/Express backend, and MongoDB for storage.</div>
+      <div class="project-stack">
+        <span class="stack-tag">React.js</span><span class="stack-tag">Node.js</span>
+        <span class="stack-tag">Express</span><span class="stack-tag">MongoDB</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div class="project-icon">🎬</div>
+        <div class="project-links"></div>
+      </div>
+      <div>
+        <div class="project-category">Real-time · Streaming · Hackathon</div>
+        <div class="project-name">Online Streaming Platform</div>
+      </div>
+      <div class="project-desc">Built during a 24-hour hackathon at VNR College. Users co-watch movies and shows online together with real-time video calling powered by the Agora SDK.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Agora SDK</span><span class="stack-tag">WebRTC</span><span class="stack-tag">JavaScript</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label fade-up">Toolkit</div>
+  <div class="section-title fade-up">Skills <span>&</span> Technologies</div>
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-pills">
+        <span class="skill-pill">JavaScript</span><span class="skill-pill">Java</span>
+        <span class="skill-pill">Python</span><span class="skill-pill">C</span>
+        <span class="skill-pill">HTML5</span><span class="skill-pill">CSS3</span><span class="skill-pill">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Frameworks</div>
+      <div class="skill-pills">
+        <span class="skill-pill">React.js</span><span class="skill-pill">Node.js</span>
+        <span class="skill-pill">Express.js</span><span class="skill-pill">Bootstrap</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Databases</div>
+      <div class="skill-pills">
+        <span class="skill-pill">MongoDB</span><span class="skill-pill">MySQL</span><span class="skill-pill">Firebase</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Tools & Cloud</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Git & GitHub</span><span class="skill-pill">GCP</span>
+        <span class="skill-pill">VS Code</span><span class="skill-pill">Power BI</span><span class="skill-pill">Linux</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label fade-up">Learning</div>
+  <div class="section-title fade-up">Certifications</div>
+  <div class="cert-grid">
+    <div class="cert-card fade-up"><div class="cert-dot"></div><div><div class="cert-name">Advanced Data Structures Through Java</div><div class="cert-issuer">Ebox · 2024</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-dot"></div><div><div class="cert-name">Introduction to Front End Development</div><div class="cert-issuer">SimpliLearn · 2024</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-dot"></div><div><div class="cert-name">JavaScript Essentials</div><div class="cert-issuer">SimpliLearn · 2024</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-dot"></div><div><div class="cert-name">Database Design</div><div class="cert-issuer">Oracle Academy · 2024</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-dot"></div><div><div class="cert-name">Database Programming</div><div class="cert-issuer">Oracle Academy · 2024</div></div></div>
+    <div class="cert-card fade-up"><div class="cert-dot"></div><div><div class="cert-name">Google Cloud Generative AI</div><div class="cert-issuer">EduSkills · 2024</div></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INVOLVEMENT -->
+<section id="involvement">
+  <div class="section-label fade-up">Community</div>
+  <div class="section-title fade-up">Involvement</div>
+  <div class="involvement-list">
+    <div class="inv-item fade-up">
+      <div class="inv-badge">Leadership</div>
+      <div class="inv-text"><strong>Marketing Lead — Cybernauts Club</strong>, CVR College of Engineering. Led marketing campaigns and community outreach for the technical club.</div>
+    </div>
+    <div class="inv-item fade-up">
+      <div class="inv-badge">Workshop</div>
+      <div class="inv-text"><strong>MERN Stack Workshop</strong>, CVR College of Engineering. Hands-on training across MongoDB, Express, React, and Node.js.</div>
+    </div>
+    <div class="inv-item fade-up">
+      <div class="inv-badge">Hackathon</div>
+      <div class="inv-text"><strong>24-Hour Hackathon</strong>, VNR College of Engineering. Built a real-time co-watching streaming platform with Agora SDK for video calls.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label fade-up">Say Hello</div>
+  <div class="section-title fade-up">Get In <span>Touch</span></div>
+  <div class="contact-inner">
+
+    <div class="contact-left fade-up">
+      <p class="contact-desc">
+        I'm currently open to internship and full-time opportunities. Whether you have a project, a role, or just want to connect — I'd love to hear from you.
+      </p>
+      <div class="contact-quick-links">
+        <a href="mailto:golisathvik04@gmail.com" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          golisathvik04@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/sathvik-goli-550a602a2" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/sathvik-goli
+        </a>
+        <a href="https://github.com/Sathvik1404" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          github.com/Sathvik1404
+        </a>
+        <a href="https://sathvik1404.netlify.app/" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          sathvik1404.netlify.app
+        </a>
+        <a href="SATHVIK_GOLI_RESUME.pdf" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          View / Download Resume
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up">
+      <h3>Send a message</h3>
+      <div id="formSuccess" class="form-success">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#22c55e"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Message sent! I'll get back to you soon.
+      </div>
+      <form id="contactForm" action="https://formspree.io/f/mvgkjvzp" method="POST">
+        <div class="form-group">
+          <label for="name">NAME</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">EMAIL</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">MESSAGE</label>
+          <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  Built by <span style="color:var(--accent2)">Sathvik Goli</span> &nbsp;·&nbsp; golisathvik04@gmail.com &nbsp;·&nbsp; (+91) 82477 57158
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Hamburger menu
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // Formspree AJAX submit — show success without page reload
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = this;
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Failed — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Failed — try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
 </html>
